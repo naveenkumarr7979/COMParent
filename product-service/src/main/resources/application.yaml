@@ -1,0 +1,59 @@
+server:
+  port: 5008
+spring:
+  application:
+    name: product-service
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/micro-product-services-db
+    username: postgres
+    password: ${DB_PASSWORD:jyoti}
+
+    jpa:
+      hibernate:
+        ddl-auto: update
+      show-sql: true
+      properties:
+        hibernate:
+          format_sql: true
+          dialect: org.hibernate.dialect.PostgreSQLDialect
+
+    boot:
+      admin:
+        client:
+          url: http://localhost:9090
+
+  management:
+    endpoints:
+      web:
+        exposure:
+          include: "*"
+    endpoint:
+      health:
+        show-details: always
+    info:
+      env:
+        enabled: true
+
+  info:
+    app:
+      name: Product Service
+      version: 1.0
+      description: Product Service REST API
+      author: Naveen
+
+  logging:
+    file:
+      name: C:/applications/microservices/logs/product-service.log
+
+    pattern:
+      file: "%d{yyyy-MM-dd HH:mm:ss} %-5level [%thread] %logger{36} - %msg%n"
+
+    level:
+      root: INFO
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:5006/eureka
+

@@ -1,0 +1,30 @@
+server:
+  port: 5011
+spring:
+  application:
+    name: Api-Gateway
+  cloud:
+    gateway:
+      server:
+        webflux:
+          routes:
+            - id: user-service
+              uri: lb://USER-SERVICE
+              predicates:
+                - Path=/api/users/**
+
+            - id: product-service
+              uri: lb://PRODUCT-SERVICE
+              predicates:
+                - Path=/api/products/**
+
+            - id: order-service
+              uri: lb://ORDER-SERVICE
+              predicates:
+                - Path=/api/orders/**
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:5006/eureka
+
+
