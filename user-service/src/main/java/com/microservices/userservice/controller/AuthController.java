@@ -5,6 +5,7 @@ import com.microservices.userservice.dto.LoginResponse;
 import com.microservices.userservice.dto.RegisterRequest;
 import com.microservices.userservice.dto.RegisterResponse;
 import com.microservices.userservice.service.AuthService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,14 +21,14 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public LoginResponse login(@RequestBody LoginRequest request)
+    public LoginResponse login(@Valid @RequestBody LoginRequest request)
     {
         System.out.println("login api hit");
         return authService.login(request);
     }
 
     @PostMapping("/register")
-    public RegisterResponse register(@RequestBody RegisterRequest request) {
+    public RegisterResponse register(@Valid @RequestBody RegisterRequest request) {
 
         return authService.register(request);
 

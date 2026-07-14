@@ -4,6 +4,8 @@ import com.microservices.userservice.common.ApiResponse;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import java.time.LocalDateTime;
+
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
@@ -35,6 +37,18 @@ public class GlobalExceptionHandler {
         response .setData(null);
 
         return response;
+    }
+    @ExceptionHandler(UserAlreadyExistsException.class)
+    public ApiResponse<Object> handleUserAlreadyExists(
+            UserAlreadyExistsException ex){
+
+        ApiResponse<Object> response=ApiResponse.builder()
+                .success(false)
+                .message(ex.getMessage())
+                .timestamp(LocalDateTime.now())
+                .build();
+        return response;
+
     }
 
 }
