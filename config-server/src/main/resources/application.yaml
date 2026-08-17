@@ -9,5 +9,15 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/your-user/microservices-config
+          uri: https://github.com/naveenkumarr7979/microservices-config.git
           default-label: main
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:5006/eureka
+    register-with-eureka: true
+    fetch-registry: true
+
+  instance:
+    prefer-ip-address: true
