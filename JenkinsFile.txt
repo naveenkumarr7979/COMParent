@@ -16,7 +16,7 @@ pipeline {
         stage('Checkout Code') {
             steps {
                 checkout scmGit(
-                    branches: [[name: '*/main']],
+                    branches: [[name: '*/main3']],
                     userRemoteConfigs: [[url: 'https://github.com/naveenkumarr7979/COMParent.git']]
                 )
             }
